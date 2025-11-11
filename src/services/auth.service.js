@@ -1,7 +1,8 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:4000/api/v1/auth/";
+const MAIN_URL_BACKEND = process.env.REACT_APP_MAIN_URL_BACKEND || "http://localhost:4000";
+const API_URL = `${MAIN_URL_BACKEND}/api/v1/auth/`;
 
 const register = (user) => {
   return axios.post(API_URL + "register", user);

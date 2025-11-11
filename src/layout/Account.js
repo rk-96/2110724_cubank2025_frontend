@@ -4,6 +4,8 @@ import AccountService from "../services/account.service";
 import Card from "../ui/Card";
 import { useNavigate } from "react-router-dom";
 
+const MAIN_URL_BACKEND = process.env.REACT_APP_MAIN_URL_BACKEND || "http://localhost:4000";
+
 const Account = () => {
   const [isPending, setIsPending] = useState(false);
   const [billTarget, setBillTarget] = useState([]);
@@ -35,7 +37,7 @@ const Account = () => {
   useEffect(() => {
     setIsPending(true);
     let data = JSON.parse(localStorage.getItem("user"));
-    fetch("http://localhost:4000/api/v1/transactions/", {
+    fetch(`${MAIN_URL_BACKEND}/api/v1/transactions/`, {
       headers: {
         "Content-Type": "application/json",
         Authorization: "Bearer " + data.token,

@@ -1,11 +1,12 @@
 import axios from "axios";
 import authHeader from "./auth-header";
 
-const API_URL = "http://localhost:4000/api/v1/transactions/";
+const MAIN_URL_BACKEND = process.env.REACT_APP_MAIN_URL_BACKEND || "http://localhost:4000";
+const API_URL = `${MAIN_URL_BACKEND}/api/v1/transactions/`;
 
 const getAccount = (accountId) => {
   let data = JSON.parse(localStorage.getItem("user"));
-  fetch("http://localhost:4000/api/v1/transactions/" + accountId, {
+  fetch(`${MAIN_URL_BACKEND}/api/v1/transactions/${accountId}`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + data.token,
@@ -21,7 +22,7 @@ const getAccount = (accountId) => {
 //
 const getMyAccount = () => {
   let data = JSON.parse(localStorage.getItem("user"));
-  fetch("http://localhost:4000/api/v1/transactions/", {
+  fetch(`${MAIN_URL_BACKEND}/api/v1/transactions/`, {
     headers: {
       "Content-Type": "application/json",
       Authorization: "Bearer " + data.token,
